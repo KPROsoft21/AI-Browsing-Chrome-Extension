@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Page Assistant</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <div class="app-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+            stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="app-name">AI Assistant</span>
+      <div class="status-dot" id="statusDot"></div>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" id="newChatBtn" title="New conversation">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button class="icon-btn" id="settingsBtn" title="Settings">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M12 2v2m0 16v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M2 12h2m16 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Settings Panel -->
+  <div class="settings-panel" id="settingsPanel">
+    <div class="settings-content">
+      <div class="settings-field">
+        <label class="settings-label">Anthropic API Key</label>
+        <div class="settings-row">
+          <input type="password" id="apiKeyInput" class="settings-input"
+            placeholder="sk-ant-api03-...">
+          <button class="save-btn" id="saveSettingsBtn">Save</button>
+        </div>
+      </div>
+      <div class="settings-field">
+        <label class="settings-label">Model</label>
+        <select id="modelSelect" class="settings-select">
+          <option value="claude-opus-4-6">claude-opus-4-6 (Best)</option>
+          <option value="claude-sonnet-4-6">claude-sonnet-4-6 (Fast)</option>
+          <option value="claude-haiku-4-5">claude-haiku-4-5 (Fastest)</option>
+        </select>
+      </div>
+      <div class="settings-note">API key stored locally in your browser only.</div>
+    </div>
+  </div>
+
+  <!-- Messages -->
+  <main class="messages" id="messages"></main>
+
+  <!-- Typing Indicator -->
+  <div class="typing-bar" id="typingBar" style="display:none">
+    <div class="typing-dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <span class="typing-label" id="typingLabel">Thinking...</span>
+  </div>
+
+  <!-- Input Area -->
+  <footer class="input-area">
+    <div class="input-wrap" id="inputWrap">
+      <textarea
+        id="msgInput"
+        class="msg-input"
+        placeholder="Tell me what to do on this page…"
+        rows="1"
+        maxlength="4000"
+      ></textarea>
+      <button class="send-btn" id="sendBtn" disabled>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+          <path d="M22 2L11 13M22 2L15 22 11 13M22 2L2 9l9 4"
+            stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="popup.js"></script>
+</body>
+</html>
